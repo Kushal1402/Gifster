@@ -1,12 +1,15 @@
-import './App.css'
+import { lazy } from "react";
+
+// Proejct imports
+const GIFS = lazy(() => import('./components/Gifs'));
+
+import './App.css';
 
 function App() {
 
   return (
     <>
-      <p className="read-the-docs text-red-600">
-        Click on the Vite and React logos to learn more
-      </p>
+      <GIFS />      
     </>
   )
 }
