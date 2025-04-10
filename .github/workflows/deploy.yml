@@ -51,9 +51,6 @@ jobs:
         with:
           name: production-files
           path: ./dist
-          
-      - name: Clean dist folder
-        run: rm -rf ./dist/*
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
