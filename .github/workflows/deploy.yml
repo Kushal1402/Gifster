@@ -28,8 +28,7 @@ jobs:
           node-version: '20'  # Specify the Node.js version you are using
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-        # run: npm install
+        run: npm install
 
       - name: Build project
         run: npm run build
