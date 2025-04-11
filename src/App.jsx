@@ -1,15 +1,14 @@
-import { lazy } from "react";
+import { RouterProvider } from "react-router-dom";
 
-// Proejct imports
-const GIFS = lazy(() => import('./components/Gifs'));
-
+// Project imports
 import './App.css';
+import Router from './routes';
 
 function App() {
 
   return (
     <>
-      <GIFS />      
+      <RouterProvider router={Router} />
     </>
   )
 }
