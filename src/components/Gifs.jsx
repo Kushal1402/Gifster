@@ -3,7 +3,7 @@ import mock_gifs from '../utils/mock-data';
 const Gifs = () => {
 
     return (
-        <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2">
+        <div className="columns-2 md:columns-3 lg:columns-4 xl:columns-5 gap-2 mt-5">
             {mock_gifs?.data.map((gif) => (
                 <div className="w-full aspect-video mb-2 relative bg-png-pattern cursor-pointer group">
                     <img
