@@ -66,11 +66,11 @@ const Header = () => {
                 </div>
 
                 {showCategories && (
-                    <div className={`absolute right-0 top-12 md:top-16 lg:top-20 px-10 pt-6 pb-9 w-full gradient z-20 rounded-[8px] overflow-hidden transition-opacity transition-transform duration-250 ease-[cubic-bezier(0.16, 1, 0.3, 1)] ${showCategories ? 'max-h-screen opacity-100 transform-[scale(1)_translateY(0)]' : 'max-h-0 opacity-0 transform-[scale(.99)_translateY(-.7em)]'}`}>
+                    <div className={`absolute right-0 top-12 md:top-16 lg:top-20 px-10 pt-6 pb-9 w-full gradient z-20 rounded-[4px] overflow-hidden transition-opacity transition-transform duration-250 ease-[cubic-bezier(0.16, 1, 0.3, 1)] ${showCategories ? 'max-h-screen opacity-100 transform-[scale(1)_translateY(0)]' : 'max-h-0 opacity-0 transform-[scale(.99)_translateY(-.7em)]'}`}>
                         <span className="text-3xl font-extrabold">Categories</span>
                         <hr className="bg-gray-100 opacity-50 my-5" />
                         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-                            {categories?.data?.map((category) => {
+                            {categories?.data?.length > 0 ? categories?.data?.map((category) => {
                                 return (
                                     <Link
                                         onClick={() => setShowCategories(false)}
@@ -81,7 +81,11 @@ const Header = () => {
                                         {category.name}
                                     </Link>
                                 );
-                            })}
+                            }) : (
+                                <div>
+                                    <h2 className="text-xl font-bold">No Categories Found</h2>
+                                </div>
+                            )}
                         </div>
                     </div>
                 )}
