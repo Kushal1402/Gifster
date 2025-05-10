@@ -13,6 +13,13 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* primary */
+  --giphy-blue: #00ccff;
+  --giphy-green: #00ff99;
+  --giphy-purple: #9933ff;
+  --giphy-red: #ff6666;
+  --giphy-yellow: #fff35c;
 }
 
 a {
@@ -30,9 +37,9 @@ body {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #ffffff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: transparent;
   }
 }
