@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 
 import { HiEllipsisVertical, HiMiniBars3BottomRight } from "react-icons/hi2";
 import { GifState } from "../context/gif-context";
+import SearchGifs from "./search-gifs";
 
 const Header = () => {
     const [categories, setCategories] = useState([]);
@@ -35,11 +36,14 @@ const Header = () => {
                     </h1>
                 </Link>
 
-                <div className="font-bold text-md flex gap-2 items-center">
+                <div className="flex gap-2 items-center">
+                    {/* Search Component */}
+                    <SearchGifs />
+
                     {categories?.data?.slice(0, 5).map((category) => {
                         return (
                             <Link
-                                className="px-4 py-1 transition ease-in-out hover-gradient border-b-4 hidden lg:block"
+                                className="px-4 py-1 transition ease-in-out hover-gradient border-b-4 hidden xl:block"
                                 key={category.name}
                                 to={`/${category.name_encoded}`}
                             >
@@ -48,7 +52,7 @@ const Header = () => {
                         );
                     })}
 
-                    <button className="cursor-pointer hover-gradient hidden lg:block" onClick={() => setShowCategories(!showCategories)}>
+                    <button className="cursor-pointer hover-gradient hidden xl:block" onClick={() => setShowCategories(!showCategories)}>
                         <HiEllipsisVertical
                             size={35}
                             className={`py-0.5 transition ease-in-out ${showCategories ? "gradient" : ""} border-b-4`}
@@ -56,7 +60,7 @@ const Header = () => {
                     </button>
 
                     {/* -- Mobile UI -- */}
-                    <button className="block lg:hidden" onClick={() => setShowCategories(!showCategories)}>
+                    <button className="block xl:hidden" onClick={() => setShowCategories(!showCategories)}>
                         <HiMiniBars3BottomRight
                             className="text-sky-400"
                             size={30}

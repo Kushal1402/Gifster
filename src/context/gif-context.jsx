@@ -5,7 +5,7 @@ export const GifContext = createContext();
 const GifProvider = ({ children }) => {
 
     const [gifs, setGifs] = useState([]);
-    const [filter, setFilter] = useState("");
+    const [filter, setFilter] = useState("gifs");
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
