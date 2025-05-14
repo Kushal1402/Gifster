@@ -9,7 +9,7 @@ const SearchPopup = ({ isOpen, onClose }) => {
     const [query, setQuery] = useState('');
     const [suggestions, setSuggestions] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [selectedIndex, setSelectedIndex] = useState(-1); // Track selected suggestion
+    const [selectedIndex, setSelectedIndex] = useState(-1);
 
     const inputRef = useRef(null);
     const popupRef = useRef(null);
@@ -18,19 +18,20 @@ const SearchPopup = ({ isOpen, onClose }) => {
     const { gifApiKey } = GifState();
 
     useEffect(() => {
-        // Focus the input when popup is opened
         if (isOpen && inputRef.current) {
             setTimeout(() => {
                 inputRef.current.focus();
             }, 100);
-            setSelectedIndex(-1); // Reset selection when popup opens
+            setSelectedIndex(-1);
         }
     }, [isOpen]);
 
     useEffect(() => {
-        // Add event listener to close popup when clicking outside
         const handleClickOutside = (event) => {
             if (popupRef.current && !popupRef.current.contains(event.target)) {
+                setQuery('');
+                setSuggestions([]);
+                setSelectedIndex(-1);
                 onClose();
             }
         };
@@ -46,34 +47,30 @@ const SearchPopup = ({ isOpen, onClose }) => {
 
     // Handle keyboard navigation
     const handleKeyDown = (e) => {
-        // Skip if there are no suggestions
         if (!suggestions.length) return;
 
         switch (e.key) {
             case 'ArrowDown':
-                e.preventDefault(); // Prevent cursor from moving in input
+                e.preventDefault();
                 setSelectedIndex(prevIndex => {
                     const newIndex = prevIndex < suggestions.length - 1 ? prevIndex + 1 : 0;
-                    // Scroll suggestion into view if needed
-                    if (suggestionRefs.current[newIndex]) {
-                        suggestionRefs.current[newIndex].scrollIntoView({ block: 'nearest' });
+                    if (suggestionRefs.current[newIndex] && typeof suggestionRefs.current[newIndex].scrollIntoView === 'function') {
+                        suggestionRefs.current[newIndex].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
                     }
                     return newIndex;
                 });
                 break;
             case 'ArrowUp':
-                e.preventDefault(); // Prevent cursor from moving in input
+                e.preventDefault();
                 setSelectedIndex(prevIndex => {
                     const newIndex = prevIndex > 0 ? prevIndex - 1 : suggestions.length - 1;
-                    // Scroll suggestion into view if needed
-                    if (suggestionRefs.current[newIndex]) {
-                        suggestionRefs.current[newIndex].scrollIntoView({ block: 'nearest' });
+                    if (suggestionRefs.current[newIndex] && typeof suggestionRefs.current[newIndex].scrollIntoView === 'function') {
+                        suggestionRefs.current[newIndex].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
                     }
                     return newIndex;
                 });
                 break;
             case 'Enter':
-                // If a suggestion is selected, use that for search instead of the input value
                 if (selectedIndex >= 0 && suggestions[selectedIndex]) {
                     e.preventDefault();
                     handleSearch(suggestions[selectedIndex].name);
@@ -88,21 +85,20 @@ const SearchPopup = ({ isOpen, onClose }) => {
     };
 
     useEffect(() => {
-        // Reset selection when suggestions change
         setSelectedIndex(-1);
-        // Reset suggestion refs array
         suggestionRefs.current = suggestions.map(() => createRef());
     }, [suggestions]);
 
     useEffect(() => {
         // Fetch suggestions when query changes
+        if (query.trim().length > 2) setLoading(true);
+
         const fetchSuggestions = async () => {
             if (query.trim().length < 2) {
                 setSuggestions([]);
                 return;
             }
 
-            setLoading(true);
             try {
                 const response = await fetch(`https://api.giphy.com/v1/gifs/search/tags?api_key=${gifApiKey}&q=${query}&limit=5`);
                 const data = await response.json();
@@ -148,19 +144,21 @@ const SearchPopup = ({ isOpen, onClose }) => {
                         <input
                             ref={inputRef}
                             type="text"
-                            placeholder="Search for GIFs..."
+                            placeholder="Search for GIFs"
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
                             onKeyDown={handleKeyDown}
                             className="w-full bg-transparent text-white text-xl focus:outline-none py-2 placeholder-gray-500"
                         />
-                        <button
-                            type="button"
-                            onClick={onClose}
-                            className="text-gray-400 hover:text-white transition-colors cursor-pointer"
-                        >
-                            <HiMiniXMark size={24} />
-                        </button>
+                        {query?.length > 0 && (
+                            <button
+                                type="button"
+                                onClick={onClose}
+                                className="text-gray-400 hover:text-white transition-colors cursor-pointer"
+                            >
+                                <HiMiniXMark size={24} />
+                            </button>
+                        )}
                     </div>
                 </form>
 
@@ -178,8 +176,8 @@ const SearchPopup = ({ isOpen, onClose }) => {
                     ) : suggestions.length > 0 ? (
                         <ul>
                             {suggestions.map((suggestion, index) => (
-                                <li 
-                                    key={suggestion.name} 
+                                <li
+                                    key={suggestion.name}
                                     ref={(el) => suggestionRefs.current[index] = el}
                                     onClick={() => handleSearch(suggestion.name)}
                                     onMouseEnter={() => setSelectedIndex(index)}

@@ -33,12 +33,17 @@ const SearchGifs = () => {
             <div className="flex relative" ref={searchBoxRef}>
                 <div 
                     onClick={openSearchPopup}
-                    className="flex items-center w-full ps-7 pe-6 py-2 text-gray-300 bg-gray-800 rounded-md h-10 border border-gray-700 cursor-pointer transition-colors"
+                    className="flex items-center w-full ps-7 pe-6 py-2 text-gray-300 bg-gray-800 rounded-lg h-10 border border-gray-700 cursor-pointer transition-colors"
                 >
                     <span className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-400">
                         <HiOutlineMagnifyingGlass size={16} stroke='#74787c' strokeWidth={3} />
                     </span>
-                    <span className="text-gray-400 w-40">Search GIFs</span>
+                    <span className="text-gray-400 md:w-40 sm:w-32 w-26">
+                        <>
+                            <span className="block sm:hidden">Search</span>
+                            <span className="hidden sm:block">Search Gifs</span>
+                        </>
+                    </span>
                     <div className="absolute right-2 top-1/2 -translate-y-1/2 bg-gray-700 text-gray-300 text-xs font-medium px-2 py-0.5 rounded ml-2">
                         {navigator.platform.includes('Mac') ? '⌘K' : 'Ctrl+K'}
                     </div>

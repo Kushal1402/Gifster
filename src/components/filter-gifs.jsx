@@ -31,12 +31,25 @@ const FilterGifs = ({ showTrendingIcon = false }) => {
                         <p className="text-sky-400 font-semibold text-md">Trending</p>
                     </span>
                 )}
-                <div className="flex min-w-80 rounded-full bg-gray-800">
+                <div className="flex min-w-80 rounded-full bg-gray-800 relative overflow-hidden">
+                    <div 
+                        className={`
+                            absolute 
+                            inset-y-0 
+                            w-1/3 
+                            rounded-full 
+                            transition-transform 
+                            duration-300 
+                            ease-in-out 
+                            ${filter === "gifs" ? "translate-x-0" : filter === "stickers" ? "translate-x-full" : "translate-x-[200%]"}
+                            ${filter === "gifs" ? filters[0].background : filter === "stickers" ? filters[1].background : filters[2].background}
+                        `}
+                    />
                     {filters.map((f) => {
                         return (
                             <span
                                 onClick={() => setFilter(f.value)}
-                                className={`${filter === f.value ? f.background : ""} font-semibold py-2 w-1/3 text-center rounded-full cursor-pointer `}
+                                className="relative z-10 font-semibold py-2 w-1/3 text-center rounded-full cursor-pointer transition-all duration-300"
                                 key={f.title}
                             >
                                 {f.title}
