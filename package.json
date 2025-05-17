@@ -1,6 +1,6 @@
 {
-  "name": "gif-search-v2",
-  "homepage": "https://kushal1402.github.io/GIF-Search-V2",
+  "name": "gifster",
+  "homepage": "https://kushal1402.github.io/Gifster",
   "private": true,
   "version": "0.0.0",
   "type": "module",

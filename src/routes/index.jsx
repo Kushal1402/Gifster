@@ -30,7 +30,7 @@ const Router = createBrowserRouter(
         },
     ],
     {
-        basename: '/GIF-Search-V2',
+        basename: '/Gifster',
     }
 );
 

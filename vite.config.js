@@ -5,5 +5,5 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss(),],
-  base: "/GIF-Search-V2" // GitHub Pages base URL
+  base: "/Gifster" // GitHub Pages base URL
 })
