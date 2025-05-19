@@ -52,7 +52,7 @@ const Header = () => {
                         );
                     })}
 
-                    <button className="cursor-pointer hover-gradient hidden xl:block" onClick={() => setShowCategories(!showCategories)}>
+                    <button className="cursor-pointer hover-gradient hidden xl:block" aria-label="Open Menu" onClick={() => setShowCategories(!showCategories)}>
                         <HiEllipsisVertical
                             size={35}
                             className={`py-0.5 transition ease-in-out ${showCategories ? "gradient" : ""} border-b-4`}
@@ -60,7 +60,7 @@ const Header = () => {
                     </button>
 
                     {/* -- Mobile UI -- */}
-                    <button className="block xl:hidden" onClick={() => setShowCategories(!showCategories)}>
+                    <button className="block xl:hidden" aria-label="Open Menu" onClick={() => setShowCategories(!showCategories)}>
                         <HiMiniBars3BottomRight
                             className="text-sky-400"
                             size={30}
