@@ -31,8 +31,8 @@ const Header = () => {
             <div className="relative flex gap-4 justify-between items-center mb-2">
                 <Link to={"/"} className="flex gap-2">
                     {/* <img src="/logo.svg" alt="Giphy Logo" className="w-8" /> */}
-                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight cursor-pointer animated-logo">
-                        Giphy Search
+                    <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-[1.5px] cursor-pointer animated-logo">
+                        Gifster
                     </h1>
                 </Link>
 

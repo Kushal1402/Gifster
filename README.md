@@ -1,7 +1,7 @@
 # Gifster – GIF Search & Sharing Platform
-> Gifster is a dynamic and interactive web application allowing users to **search**, **browse**, and **share** trending and relatablex GIFs using the **Giphy API**. Whether you're looking for the perfect reaction or just want to scroll through trending GIFs, Gifster got you covered!
+> Gifster is a dynamic and interactive web application allowing users to **search**, **browse**, and **share** trending and relatable GIFs using the **Giphy API**. Whether you're looking for the perfect reaction or just want to scroll through trending GIFs, Gifster got you covered!
 
-🌐 [View Gifster Live](kushal1402.github.io/Gifster/)
+🌐 [View Gifster Live](https://kushal1402.github.io/Gifster)
 
 ## 🛠️ Built With 
 - React + Vite
