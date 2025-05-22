@@ -11,10 +11,10 @@ const Header = () => {
     const [categories, setCategories] = useState([]);
     const [showCategories, setShowCategories] = useState(false);
 
-    const { gifApiKey } = GifState();
+    const { gifApiKey, gifApiBaseUrl } = GifState();
 
     const fetchGifCategories = async () => {
-        const response = await fetch(`https://api.giphy.com/v1/gifs/categories?api_key=${gifApiKey}`);
+        const response = await fetch(`${gifApiBaseUrl}gifs/categories?api_key=${gifApiKey}`);
         const data = await response.json();
         // console.log(data);
         setCategories(data);
