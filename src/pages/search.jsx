@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Gifs from "../components/Gifs";
@@ -6,28 +6,43 @@ import { GifState } from "../context/gif-context";
 
 function SearchPage() {
     const { query } = useParams();
-    const { gifApiKey, gifs, setGifs, loading, setLoading } = GifState();
+    const { gifApiKey, gifApiBaseUrl, updateGifs, loading, setLoading, loadingMore, setLoadingMore, offset, hasMore, resetPagination } = GifState();
 
-    const fetchSearchResults = async () => {
-        setLoading(true);
+    const fetchSearchResults = async (isLoadingMore = false) => {
+        if (isLoadingMore) {
+            setLoadingMore(true);
+        } else {
+            setLoading(true);
+        }
+
         try {
             const response = await fetch(
-                `https://api.giphy.com/v1/gifs/search?api_key=${gifApiKey}&q=${query}&limit=20&rating=g`
+                `${gifApiBaseUrl}gifs/search?api_key=${gifApiKey}&q=${query}&limit=20&offset=${offset}&rating=g`
             );
             const data = await response.json();
-            setGifs(data);
+            updateGifs(data);
         } catch (error) {
             console.error("Error fetching search results:", error);
         } finally {
             setLoading(false);
+            setLoadingMore(false);
         }
     };
 
+    // Handle initial load and query changes
     useEffect(() => {
         if (query) {
+            resetPagination();
             fetchSearchResults();
         }
     }, [query]);
+
+    // Function to load more gifs when scrolling
+    const loadMoreGifs = () => {
+        if (!loading && !loadingMore && hasMore && query) {
+            fetchSearchResults(true);
+        }
+    };
 
     return (
         <div className="container mx-auto px-0 my-3">
@@ -44,7 +59,12 @@ function SearchPage() {
                 </div>
             </div>
 
-            <Gifs gifs={gifs} loading={loading} />
+            <Gifs
+                loading={loading}
+                loadMoreGifs={loadMoreGifs}
+                hasMore={hasMore}
+                loadingMore={loadingMore}
+            />
         </div>
     );
 }
