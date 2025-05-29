@@ -58,7 +58,7 @@ const Gifs = ({ loading, loadMoreGifs, hasMore, loadingMore }) => {
                                 key={`ghost-${index}`}
                                 className="w-full mb-2 relative rounded"
                                 style={{
-                                    height: `${Math.floor(Math.random() * 150) + 150}px`,
+                                    height: `250px`,
                                     background: `${themeColors[index % themeColors.length]}`
                                 }}
                             />
