@@ -33,6 +33,10 @@
     line-height: 1.2;
 }
 
+.animated-btn {
+    background: linear-gradient(150deg, #0d9488, #2563eb, #db2777);
+}
+
 .transparent-bg-stickers-text {
     background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4AQMAAACSSKldAAAABlBMVEUhIiIWFhYoSqvJAAAAGElEQVQY02MAAv7///8PWxqIPwDZw5UGABtgwz2xhFKxAAAAAElFTkSuQmCC")
 }
