@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 
 import Header from "../components/header";
+import ScrollToTop from "../components/scroll-to-top";
 
 const AppLayout = () => {
     return (
@@ -11,6 +12,8 @@ const AppLayout = () => {
                 <main>
                     <Outlet />
                 </main>
+
+                <ScrollToTop />
             </div>
         </div>
     )
