@@ -1,0 +1,11 @@
+import{G as g,j as e,H as k,r as h}from"./index-DegCdevx.js";import{G as v}from"./Gifs-Yf7U63Vd.js";const n=[{title:"GIFs",value:"gifs",background:"bg-gradient-to-tr from-purple-500 via-purple-600 to-purple-500"},{title:"Stickers",value:"stickers",background:"bg-gradient-to-tr from-teal-500 via-teal-600 to-teal-500"},{title:"Text",value:"text",background:"bg-gradient-to-tr from-blue-500 via-blue-600 to-blue-500"}],y=({showTrendingIcon:r=!1})=>{const{filter:t,setFilter:a,setOffset:l,setLoading:i}=g();return e.jsx(e.Fragment,{children:e.jsxs("div",{className:`flex my-3 gap-3 ${r?"flex-col sm:flex-row sm:items-center justify-between":""}`,children:[r&&e.jsxs("span",{className:"flex gap-2 items-center text-sky-400 font-bold text-md",children:[e.jsx(k,{size:25,className:"text-teal-400"}),e.jsx("p",{className:"text-sky-400 font-semibold text-md",children:"Trending"})]}),e.jsxs("div",{className:"flex min-w-80 rounded-full bg-gray-800 relative overflow-hidden",children:[e.jsx("div",{className:`
+                            absolute 
+                            inset-y-0 
+                            w-1/3 
+                            rounded-full 
+                            transition-transform 
+                            duration-300 
+                            ease-in-out 
+                            ${t==="gifs"?"translate-x-0":t==="stickers"?"translate-x-full":"translate-x-[200%]"}
+                            ${t==="gifs"?n[0].background:t==="stickers"?n[1].background:n[2].background}
+                        `}),n.map(s=>e.jsx("span",{onClick:()=>{i(!0),l(0),a(s.value)},className:"relative z-10 font-semibold py-2 w-1/3 text-center rounded-full cursor-pointer transition-all duration-300",children:s.title},s.title))]})]})})};function N(){const{gifApiKey:r,gifApiBaseUrl:t,filter:a,updateGifs:l,loading:i,setLoading:s,loadingMore:o,setLoadingMore:f,offset:m,hasMore:c,resetPagination:x}=g(),d=async(b=!1)=>{b?f(!0):s(!0);try{const j=await(await fetch(`${t}${a}/trending?api_key=${r}&limit=20&offset=${m}&rating=g`)).json();l(j)}catch(u){console.error("Error fetching trending gifs:",u)}finally{s(!1),f(!1)}};h.useEffect(()=>{x(),d()},[a]);const p=()=>{!i&&!o&&c&&d(!0)};return e.jsxs(e.Fragment,{children:[e.jsx(y,{showTrendingIcon:!0}),e.jsx(v,{loading:i,loadMoreGifs:p,hasMore:c,loadingMore:o})]})}export{N as default};
