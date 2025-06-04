@@ -15,7 +15,7 @@ const SearchPopup = ({ isOpen, onClose }) => {
     const popupRef = useRef(null);
     const suggestionRefs = useRef([]);
 
-    const { gifApiKey } = GifState();
+    const { gifApiBaseUrl, gifApiKey, filter, resetPagination } = GifState();
 
     useEffect(() => {
         if (isOpen && inputRef.current) {
@@ -100,7 +100,7 @@ const SearchPopup = ({ isOpen, onClose }) => {
             }
 
             try {
-                const response = await fetch(`https://api.giphy.com/v1/gifs/search/tags?api_key=${gifApiKey}&q=${query}&limit=5`);
+                const response = await fetch(`${gifApiBaseUrl}${filter}/search/tags?api_key=${gifApiKey}&q=${query}&limit=5`);
                 const data = await response.json();
                 setSuggestions(data.data);
             } catch (error) {
@@ -120,6 +120,7 @@ const SearchPopup = ({ isOpen, onClose }) => {
     const handleSearch = (searchTerm) => {
         if (!searchTerm.trim()) return;
         navigate(`/search/${searchTerm}`);
+        resetPagination();
         onClose();
     };
 

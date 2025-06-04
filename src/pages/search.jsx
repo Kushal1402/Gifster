@@ -6,7 +6,7 @@ import { GifState } from "../context/gif-context";
 
 function SearchPage() {
     const { query } = useParams();
-    const { gifApiKey, gifApiBaseUrl, updateGifs, loading, setLoading, loadingMore, setLoadingMore, offset, hasMore, resetPagination } = GifState();
+    const { gifApiKey, gifApiBaseUrl, filter, updateGifs, loading, setLoading, loadingMore, setLoadingMore, offset, hasMore, resetPagination } = GifState();
 
     const fetchSearchResults = async (isLoadingMore = false) => {
         if (isLoadingMore) {
@@ -17,7 +17,7 @@ function SearchPage() {
 
         try {
             const response = await fetch(
-                `${gifApiBaseUrl}gifs/search?api_key=${gifApiKey}&q=${query}&limit=20&offset=${offset}&rating=g`
+                `${gifApiBaseUrl}${filter}/search?api_key=${gifApiKey}&q=${query}&limit=20&offset=${offset}&rating=r`
             );
             const data = await response.json();
             updateGifs(data);

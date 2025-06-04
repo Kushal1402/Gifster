@@ -77,14 +77,14 @@ const Gifs = ({ loading, loadMoreGifs, hasMore, loadingMore }) => {
                                 `}
                                     alt={gif?.alt_text ? gif?.alt_text : gif?.title}
                                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                                    className={`w-full object-cover rounded transition-all duration-300 ${gif.type === "text" ? "transparent-bg-stickers-text" : ""}`}
+                                    className={`w-full object-cover rounded transition-all duration-300 ${gif.type === "text" || gif.type === "sticker" ? "transparent-bg-stickers-text" : ""}`}
                                     decoding="async"
                                     width={gif?.images?.original.width}
                                     height={gif?.images?.original.height}
                                     fetchPriority={index < 4 ? "high" : "auto"}
                                     loading={index < 8 ? "eager" : "lazy"}
                                     style={{
-                                        background: gif.type !== "text" ? themeColors[index % themeColors.length] : "transparent"
+                                        background: gif.type !== "text" && gif.type !== "sticker" ? themeColors[index % themeColors.length] : ""
                                     }}
                                 />
                                 {gif?.user?.display_name && (

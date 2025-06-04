@@ -20,7 +20,7 @@ const filters = [
 ];
 
 const FilterGifs = ({ showTrendingIcon = false }) => {
-    const { filter, setFilter } = GifState();
+    const { filter, setFilter, setOffset, setLoading } = GifState();
 
     return (
         <>
@@ -48,7 +48,11 @@ const FilterGifs = ({ showTrendingIcon = false }) => {
                     {filters.map((f) => {
                         return (
                             <span
-                                onClick={() => setFilter(f.value)}
+                                onClick={() => {
+                                    setLoading(true);
+                                    setOffset(0);
+                                    setFilter(f.value);
+                                }}
                                 className="relative z-10 font-semibold py-2 w-1/3 text-center rounded-full cursor-pointer transition-all duration-300"
                                 key={f.title}
                             >
