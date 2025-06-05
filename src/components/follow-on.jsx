@@ -11,7 +11,7 @@ const FollowOn = () => {
         <a href="https://www.instagram.com/kushal1402">
           <FaInstagram size={20} />
         </a>
-        <a href="www.linkedin.com/in/kushaldoshi14">
+        <a href="https://www.linkedin.com/in/kushaldoshi14">
           <FaLinkedin size={20} />
         </a>
       </div>

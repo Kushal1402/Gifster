@@ -126,7 +126,7 @@ const Category = () => {
                             <div></div>
                         </div>
                     </div>
-                ) : !loading && gifs?.data?.length < 0 ? (
+                ) : !loading && gifs?.data?.length === 0 ? (
                     <p className="text-gray-400">{`No GIFs found for ${category} category.`}</p>
                 ) : ""}
             </div>
