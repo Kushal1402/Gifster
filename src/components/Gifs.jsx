@@ -66,7 +66,7 @@ const Gifs = ({ loading, loadMoreGifs, hasMore, loadingMore }) => {
                     }
 
                     return (
-                        <Link to={`${gif.type}/${gif.slug}`} key={gif?.id} className="block mb-2">
+                        <Link to={`/${gif.type}s/${gif.slug}`} key={gif?.id} className="block mb-2">
                             <div className="w-full mb-2 relative bg-png-pattern cursor-pointer group">
                                 <img
                                     src={gif?.images?.fixed_width.webp}

@@ -7,6 +7,7 @@ import AppLayout from "../layouts/app-layout";
 const Home = lazy(() => import('../pages/home'));
 const SearchPage = lazy(() => import("../pages/search"));
 const Category = lazy(() => import("../pages/category"));
+const GifPage = lazy(() => import("../pages/single-gif"));
 
 const Router = createBrowserRouter(
     [
@@ -25,6 +26,10 @@ const Router = createBrowserRouter(
                 {
                     path: "/search/:query",
                     element: <SearchPage />,
+                },
+                {
+                    path: "/:type/:slug",
+                    element: <GifPage />,
                 },
             ],
         },
