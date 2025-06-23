@@ -8,6 +8,7 @@ import { HiOutlineExternalLink } from "react-icons/hi";
 import { HiMiniChevronDown, HiMiniChevronUp } from "react-icons/hi2";
 import { FaPaperPlane } from "react-icons/fa6";
 import { IoCodeSharp } from "react-icons/io5";
+import { FaLink } from "react-icons/fa";
 
 // Theme colors for ghost loader items
 const themeColors = ['#00CCFF', '#9733FF', '#FFF35C', '#FF6666', '#00FF99'];
@@ -31,6 +32,8 @@ const GifPage = () => {
 
     const [relatedGif, setRelatedGifs] = useState([]);
     const [relatedLoading, setRelatedLoading] = useState(true);
+
+    const [copyText, setCopyText] = useState(false);
 
     useEffect(() => {
         if (!contentType.includes(type)) {
@@ -203,6 +206,9 @@ const GifPage = () => {
                                 <button className="ms-1 me-1" onClick={(e) => EmbedGif(e)}>
                                     <IoCodeSharp size={25} />
                                 </button>
+                                <button className="me-1" onClick={() => navigator.clipboard.writeText(gifData?.images?.original?.url)}>
+                                    <FaLink size={20} />
+                                </button>
                             </div>
                         </div>
 
@@ -224,6 +230,21 @@ const GifPage = () => {
                                     >
                                         <IoCodeSharp size={30} />
                                         Embed
+                                    </button>
+                                </div>
+                                <div className="group">
+                                    <button
+                                        onClick={() => {
+                                            navigator.clipboard.writeText(gifData?.images?.original?.url);
+                                            setCopyText(true);
+                                            setTimeout(() => {
+                                                setCopyText(false);
+                                            }, 2000);
+                                        }}
+                                        className="flex gap-5 items-center font-bold cursor-pointer text-lg group-hover:scale-110 transition-transform"
+                                    >
+                                        <FaLink size={25} />
+                                        {copyText ? "Copied!" : "Copy Link"}
                                     </button>
                                 </div>
                             </div>
